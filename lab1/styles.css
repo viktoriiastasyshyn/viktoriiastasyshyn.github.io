@@ -2,10 +2,10 @@
    1. Базові стилі (Шрифти, кольори, макет)
    ========================================= */
 body {
-    font-family: 'Segoe UI', Arial, sans-serif; /* Стандартний шрифт для тіла сторінки */
+    font-family: 'Segoe UI', Arial, sans-serif; 
     margin: 0;
     padding: 0;
-    background-color: #f4f7f6; /* Світлий фоновий колір */
+    background-color: #f4f7f6; 
     color: #333;
 }
 
@@ -13,8 +13,8 @@ body {
    2. Заголовок та Навігація
    ========================================= */
 header {
-    background-color: #2c3e50; /* Темний фон заголовка */
-    color: #ffffff; /* Білий текст */
+    background-color: #2c3e50; 
+    color: #ffffff; 
     padding: 20px;
     text-align: center;
 }
@@ -34,7 +34,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #ffffff; /* Білі посилання */
+    color: #ffffff; 
     text-decoration: none;
     font-weight: 500;
     font-size: 16px;
@@ -42,7 +42,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #3498db52; /* Зміна кольору посилання при наведенні */
+    color: #3498db52; 
 }
 
 /* Стилізація кнопки "Реєстрація" */
@@ -73,7 +73,7 @@ section {
     padding: 25px;
     margin-bottom: 30px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легка тінь для виділення блоків */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); 
 }
 
 section h2 {
@@ -84,13 +84,12 @@ section h2 {
 }
 
 /* =========================================
-   4. CSS Grid для карток тренувань (Варіант 21)
+   4. CSS Grid для карток тренувань 
    ========================================= */
 .grid-container {
-    display: grid; /* Використання сітки */
-    /* Автоматичне розміщення колонок мінімум по 300px */
+    display: grid; 
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 25px; /* Відстань між картками */
+    gap: 25px; 
     margin-top: 20px;
 }
 
@@ -116,9 +115,9 @@ section h2 {
 
 /* Зображення всередині карток */
 .grid-container article img {
-    width: 100%; /* Картинка займає всю ширину картки */
-    aspect-ratio: 16 / 9; /* Встановлюємо кінематографічну пропорцію (або можна просто height: 200px;) */
-    object-fit: cover; /* Запобігає розтягуванню: картинка красиво обрізається під заданий розмір */
+    width: 100%; 
+    aspect-ratio: 16 / 9; 
+    object-fit: cover; 
     border-radius: 5px;
     margin-bottom: 15px;
 }
@@ -142,8 +141,8 @@ section h2 {
 
 /* Додатковий стиль для списків раціону */
 .diet-list {
-    text-align: left; /* Вирівнювання тексту зліва для зручного читання */
-    line-height: 1.6; /* Більший міжрядковий інтервал */
+    text-align: left; 
+    line-height: 1.6;
     padding-left: 20px;
 }
 
@@ -174,44 +173,42 @@ footer ul li {
 /* --- Планшети (екрани до 768px) --- */
 @media (max-width: 768px) {
     header {
-        padding: 15px; /* Зменшуємо відступи в заголовку */
+        padding: 15px; 
     }
 
     nav ul {
-        flex-direction: column; /* Вертикальне відображення пунктів навігації  */
+        flex-direction: column; 
         text-align: center;
     }
 
     nav ul li {
-        margin: 10px 0; /* Додаємо відступи між вертикальними пунктами */
+        margin: 10px 0; 
     }
 
-    /* Кнопка реєстрації на планшетах має виглядати органічно в колонці */
     .btn-register {
         display: inline-block;
         margin-top: 10px;
     }
 
     section {
-        padding: 15px; /* Зменшуємо внутрішні відступи секцій для економії місця */
+        padding: 15px; 
     }
 }
 
 /* --- Мобільні телефони (екрани до 480px) --- */
 @media (max-width: 480px) {
     header h1 {
-        font-size: 24px; /* Зменшуємо розмір шрифту головного заголовка  */
+        font-size: 24px; 
         margin-bottom: 10px;
     }
 
     nav ul li a {
-        font-size: 18px; /* Трохи збільшуємо текст посилань, щоб по них було легше потрапити пальцем */
+        font-size: 18px;
     }
 
-    /* Переконуємось, що сітка точно переходить в одну колонку на маленьких екранах */
     .grid-container {
         grid-template-columns: 1fr;
-        gap: 15px; /* Зменшуємо відстань між картками тренувань */
+        gap: 15px;
     }
 
     .grid-container article {
@@ -219,6 +216,6 @@ footer ul li {
     }
     
     section h2 {
-        font-size: 20px; /* Зменшуємо заголовки секцій */
+        font-size: 20px;
     }
 }
