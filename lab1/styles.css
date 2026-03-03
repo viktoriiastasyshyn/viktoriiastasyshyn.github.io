@@ -1,0 +1,217 @@
+/* =========================================
+   1. Базові стилі (Шрифти, кольори, макет)
+   ========================================= */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif; /* Стандартний шрифт для тіла сторінки */
+    margin: 0;
+    padding: 0;
+    background-color: #f4f7f6; /* Світлий фоновий колір */
+    color: #333;
+}
+
+/* =========================================
+   2. Заголовок та Навігація
+   ========================================= */
+header {
+    background-color: #2c3e50; /* Темний фон заголовка */
+    color: #ffffff; /* Білий текст */
+    padding: 20px;
+    text-align: center;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 15px 0 0 0;
+    display: flex; /* Горизонтальне розташування списку навігації */
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap; /* Дозволяє перенесення на менших екранах */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #ffffff; /* Білі посилання */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #3498db52; /* Зміна кольору посилання при наведенні */
+}
+
+/* Стилізація кнопки "Реєстрація" */
+.btn-register {
+    background-color: #db3434;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn-register:hover {
+    background-color: #c03a2b6b;
+    color: #ffffff;
+}
+
+/* =========================================
+   3. Основний контент та Секції
+   ========================================= */
+main {
+    max-width: 1100px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 25px;
+    margin-bottom: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* Легка тінь для виділення блоків */
+}
+
+section h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-top: 0;
+}
+
+/* =========================================
+   4. CSS Grid для карток тренувань (Варіант 21)
+   ========================================= */
+.grid-container {
+    display: grid; /* Використання сітки */
+    /* Автоматичне розміщення колонок мінімум по 300px */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 25px; /* Відстань між картками */
+    margin-top: 20px;
+}
+
+/* Стилізація самої картки */
+.grid-container article {
+    background-color: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.grid-container article:hover {
+    transform: translateY(-5px); /* Ефект підняття картки при наведенні */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.grid-container article h3 {
+    color: #34495e;
+    margin-top: 0;
+}
+
+/* Зображення всередині карток */
+.grid-container article img {
+    width: 100%; /* Картинка займає всю ширину картки */
+    aspect-ratio: 16 / 9; /* Встановлюємо кінематографічну пропорцію (або можна просто height: 200px;) */
+    object-fit: cover; /* Запобігає розтягуванню: картинка красиво обрізається під заданий розмір */
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+/* Кнопка-посилання на відео */
+.video-link {
+    display: inline-block;
+    background-color: #3498db;
+    color: #ffffff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.video-link:hover {
+    background-color: #297fb94f;
+}
+
+/* =========================================
+   5. Нижній колонтитул (Футер)
+   ========================================= */
+footer {
+    background-color: #2c3e50;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+footer ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer ul li {
+    margin: 5px 0;
+}
+
+/* =========================================
+   6. Медіа-запити (Адаптивний дизайн)
+   ========================================= */
+
+/* --- Планшети (екрани до 768px) --- */
+@media (max-width: 768px) {
+    header {
+        padding: 15px; /* Зменшуємо відступи в заголовку */
+    }
+
+    nav ul {
+        flex-direction: column; /* Вертикальне відображення пунктів навігації  */
+        text-align: center;
+    }
+
+    nav ul li {
+        margin: 10px 0; /* Додаємо відступи між вертикальними пунктами */
+    }
+
+    /* Кнопка реєстрації на планшетах має виглядати органічно в колонці */
+    .btn-register {
+        display: inline-block;
+        margin-top: 10px;
+    }
+
+    section {
+        padding: 15px; /* Зменшуємо внутрішні відступи секцій для економії місця */
+    }
+}
+
+/* --- Мобільні телефони (екрани до 480px) --- */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 24px; /* Зменшуємо розмір шрифту головного заголовка  */
+        margin-bottom: 10px;
+    }
+
+    nav ul li a {
+        font-size: 18px; /* Трохи збільшуємо текст посилань, щоб по них було легше потрапити пальцем */
+    }
+
+    /* Переконуємось, що сітка точно переходить в одну колонку на маленьких екранах */
+    .grid-container {
+        grid-template-columns: 1fr;
+        gap: 15px; /* Зменшуємо відстань між картками тренувань */
+    }
+
+    .grid-container article {
+        padding: 15px;
+    }
+    
+    section h2 {
+        font-size: 20px; /* Зменшуємо заголовки секцій */
+    }
+}
