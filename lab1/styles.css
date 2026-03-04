@@ -219,3 +219,50 @@ footer ul li {
         font-size: 20px;
     }
 }
+
+/* --- СТИЛІ ДЛЯ СТОРІНОК ДЕТАЛЕЙ ТРЕНУВАНЬ --- */
+.info-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.info-container img {
+    width: 100%; 
+    max-height: 450px; 
+    object-fit: cover; 
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.info-details {
+    list-style-type: none;
+    padding: 0;
+}
+
+.info-details li {
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.6;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #eee; 
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #2c3e50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #1a252f;
+}
