@@ -1,75 +1,81 @@
-// 1. Створюємо масив з даними про всі тренування
+// 1. Створюємо масив з даними про всі тренування (додали реальні YouTube-відео)
 const trainingsData = [
     {
         title: 'Ранкова йога',
         image: 'imgg/yoga.jpg',
         duration: '20 хв',
         calories: '120 ккал',
-        link: 'yoga-info.html'
+        infoPage: 'yoga-info.html',
+        video: 'https://www.youtube.com/watch?v=sTANio_2E0Q' // Yoga with Adriene
     },
     {
         title: 'Інтенсивне кардіо',
         image: 'imgg/cardio.jpg',
         duration: '30 хв',
         calories: '350 ккал',
-        link: 'cardio-info.html'
+        infoPage: 'cardio-info.html',
+        video: 'https://www.youtube.com/watch?v=ml6cT4AZdqI' // MadFit
     },
     {
         title: 'Силове тренування',
         image: 'imgg/strength.jpg',
         duration: '45 хв',
         calories: '400 ккал',
-        link: 'strength-info.html'
+        infoPage: 'strength-info.html',
+        video: 'https://www.youtube.com/watch?v=xSrw3TZiTt4' // HASfit
     },
     {
-        title: 'Пілатес для початківців',
+        title: 'Пілатес для початковців',
         image: 'imgg/pilates.jpg',
         duration: '25 хв',
         calories: '150 ккал',
-        link: 'pilates-info.html'
+        infoPage: 'pilates-info.html',
+        video: 'https://www.youtube.com/watch?v=1-ckXRmjDUk' // Move With Nicole
     },
     {
         title: 'HIIT (Жироспалювання)',
         image: 'imgg/hiit.jpg',
         duration: '20 хв',
         calories: '450 ккал',
-        link: 'hiit-info.html'
+        infoPage: 'hiit-info.html',
+        video: 'https://www.youtube.com/watch?v=M0uO8X3_tEA' // Natacha Océane
     },
     {
         title: 'Стретчинг (Гнучкість)',
         image: 'imgg/stretching.jpg',
         duration: '15 хв',
         calories: '80 ккал',
-        link: 'stretching-info.html'
+        infoPage: 'stretching-info.html',
+        video: 'https://www.youtube.com/watch?v=fjfThtANcEE' // MadFit
     }
 ];
 
-// 2. Знаходимо контейнер на сторінці, куди будемо вставляти картки
+// 2. Знаходимо контейнер на сторінці
 const trainingsContainer = document.getElementById('trainings-container');
 
-// 3. Використовуємо цикл FOR для генерації карток (Завдання 1)
+// 3. Генеруємо картки через цикл FOR
 for (let i = 0; i < trainingsData.length; i++) {
     const training = trainingsData[i];
     
-    // Створюємо HTML-код для однієї картки
     const cardHTML = `
         <article>
             <h3>${training.title}</h3>
-            <a href="${training.link}">
+            <a href="${training.infoPage}">
                 <img src="${training.image}" alt="${training.title}" class="clickable-image">
             </a>
-            <p><b>⏱ Час:</b> ${training.duration} | <b>Калорії:</b> ${training.calories}</p>
-            <a href="video.html" class="video-link">Дивитися відео</a>
+            <p><b>⏱ Час:</b> ${training.duration} | <b> Калорії:</b> ${training.calories}</p>
+            
+            <a href="${training.video}" target="_blank" class="video-link">▶ Дивитися відео на YouTube</a>
             <br>
+            
             <button class="btn-start" onclick="startTraining('${training.title}', '${training.duration}', this)">Почати тренування</button>
         </article>
     `;
     
-    // Додаємо створену картку всередину контейнера
     trainingsContainer.innerHTML += cardHTML;
 }
 
-// Функція-заглушка для наступного завдання (щоб кнопка поки не видавала помилку)
+// Функція-заглушка для кнопки
 function startTraining(title, duration, buttonElement) {
     alert("Ви натиснули почати: " + title);
 }
