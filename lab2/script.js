@@ -1,3 +1,7 @@
+// --- Змінні для відстеження прогресу ---
+let totalWorkouts = 0;
+let totalCalories = 0;
+
 // 1. Створюємо масив з даними про всі тренування (додали реальні YouTube-відео)
 const trainingsData = [
     {
@@ -53,7 +57,7 @@ const trainingsData = [
 // 2. Знаходимо контейнер на сторінці
 const trainingsContainer = document.getElementById('trainings-container');
 
-// 3. Генеруємо картки через цикл FOR
+// Завдання 1. Генеруємо картки через цикл FOR
 for (let i = 0; i < trainingsData.length; i++) {
     const training = trainingsData[i];
     
@@ -63,39 +67,37 @@ for (let i = 0; i < trainingsData.length; i++) {
             <a href="${training.infoPage}">
                 <img src="${training.image}" alt="${training.title}" class="clickable-image">
             </a>
-            <p><b>⏱ Час:</b> ${training.duration} | <b> Калорії:</b> ${training.calories}</p>
-            
+            <p><b>⏱ Час:</b> ${training.duration} | <b> Калорії:</b> ${training.calories} ккал</p>
             <a href="${training.video}" target="_blank" class="video-link">▶ Дивитися відео на YouTube</a>
             <br>
-            
-            <button class="btn-start" onclick="startTraining('${training.title}', '${training.duration}', this)">Почати тренування</button>
+            <button class="btn-start" onclick="startTraining('${training.title}', '${training.duration}', '${training.calories}', this)">Почати тренування</button>
         </article>
     `;
     
     trainingsContainer.innerHTML += cardHTML;
 }
-
-// Функція, яка запускається при натисканні на кнопку "Почати тренування"
-function startTraining(title, duration, buttonElement) {
-    
-    // Завдання 2: Змінюємо статус тренування (кнопки)
-    // Перевіряємо за допомогою умовного оператора if, чи тренування ще не пройдене
+// --- Завдання 2. та 3.
+function startTraining(title, duration, calories, buttonElement) {
     if (buttonElement.innerText === "Почати тренування") {
         
-        // Змінюємо текст та колір кнопки
+        // Змінюємо кнопку
         buttonElement.innerText = "Тренування завершено ✅";
-        buttonElement.style.backgroundColor = "#95a5a6"; // Робимо кнопку сірою
+        buttonElement.style.backgroundColor = "#95a5a6"; 
         buttonElement.style.cursor = "default";
         
-        // Завдання 3: Оновлюємо Журнал тренувань
-        // Знаходимо список журналу в HTML за його ID
-        const journalList = document.getElementById('journal-list');
+        // Оновлюємо змінні прогресу
+        totalWorkouts++;
+        totalCalories += parseInt(calories); // Перетворюємо рядок на число і додаємо
         
-        // Отримуємо поточний час (щоб було як у справжньому додатку)
+        // ОНОВЛЮЄМО HTML (записуємо нові цифри на сторінку)
+        document.getElementById('completed-count').innerText = totalWorkouts;
+        document.getElementById('calories-count').innerText = totalCalories;
+
+        // Записуємо в Журнал
+        const journalList = document.getElementById('journal-list');
         const now = new Date();
         const timeString = now.toLocaleTimeString('uk-UA', {hour: '2-digit', minute:'2-digit'});
         
-        // Створюємо новий запис для журналу (Тип тренування та час)
         const newEntry = `
             <li style="background: #e8f6f3; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #1abc9c;">
                 <b>Тип:</b> ${title} <br>
@@ -103,38 +105,39 @@ function startTraining(title, duration, buttonElement) {
                 <b>Час виконання:</b> ${timeString}
             </li>
         `;
-        
-        // Додаємо цей запис у наш HTML-список журналу
         journalList.innerHTML += newEntry;
         
-        // Оновлюємо прогрес (Завдання 2) - візуальне сповіщення
-        alert("Вітаємо! Ви успішно завершили тренування: " + title + ". Запис додано до Журналу!");
-        
     } else {
-        // Якщо користувач натискає на вже пройдене тренування
         alert("Ви вже виконали це тренування сьогодні! Перевірте свій Журнал.");
     }
 }
 
-// --- Завдання 3: Обробка форми ---
+// --- Обробка форми для власного тренування
 const form = document.getElementById('custom-workout-form');
 
 form.addEventListener('submit', function(event) {
-    // Зупиняємо стандартне перезавантаження сторінки при відправці форми
-    event.preventDefault(); 
+    event.preventDefault(); // Зупиняємо перезавантаження сторінки
     
-    // Отримуємо значення, які ввів користувач
     const nameInput = document.getElementById('workout-name').value;
     const durationInput = document.getElementById('workout-duration').value;
     const errorMsg = document.getElementById('form-error');
 
-    // Перевіряємо (валідуємо), чи поля не порожні
     if (nameInput === '' || durationInput === '') {
-        errorMsg.style.display = 'block'; // Показуємо повідомлення про помилку
+        errorMsg.style.display = 'block'; 
     } else {
-        errorMsg.style.display = 'none'; // Ховаємо помилку
+        errorMsg.style.display = 'none'; 
         
-        // Знаходимо журнал і додаємо туди новий запис
+        // Оновлюємо прогрес для власного тренування
+        totalWorkouts++;
+        // Рахуємо приблизні калорії: 5 ккал за 1 хвилину
+        const estimatedCalories = parseInt(durationInput) * 5; 
+        totalCalories += estimatedCalories;
+        
+        // Записуємо нові цифри на сторінку
+        document.getElementById('completed-count').innerText = totalWorkouts;
+        document.getElementById('calories-count').innerText = totalCalories;
+
+        // Додаємо в Журнал
         const journalList = document.getElementById('journal-list');
         const now = new Date();
         const timeString = now.toLocaleTimeString('uk-UA', {hour: '2-digit', minute:'2-digit'});
@@ -143,13 +146,12 @@ form.addEventListener('submit', function(event) {
             <li style="background: #eaf2f8; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #3498db;">
                 <b>Тип:</b> ${nameInput} (Власне) <br>
                 <b>Тривалість:</b> ${durationInput} хв <br>
+                <b>Спалено:</b> ~${estimatedCalories} ккал <br>
                 <b>Час додавання:</b> ${timeString}
             </li>
         `;
-        
         journalList.innerHTML += newEntry;
         
-        // Очищаємо поля форми після успішного додавання
         form.reset();
     }
 });
