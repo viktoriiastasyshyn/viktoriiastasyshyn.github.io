@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HealthTrack - Моніторинг здоров'я та активності</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+    <header>
+        <h1>HealthTrack</h1>
+        <nav>
+            <ul>
+                <li><a href="#training">Тренування</a></li>
+                <li><a href="#progress">Мій прогрес</a></li>
+                <li><a href="#diet">Раціон</a></li>
+                <li><a href="#register" class="btn-register">Реєстрація</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+       <section id="training">
+            <h2>Тренування</h2>
+            <p>Оберіть програму для підтримки форми. Натисніть на картинку, щоб дізнатися деталі, або на посилання нижче для перегляду відео.</p>
+            
+            <div class="grid-container" id="trainings-container">
+            </div>
+            
+        </section>
+
+        <section id="progress">
+            <h2>Мій прогрес</h2>
+            <p>Відстежуйте свої результати та досягайте нових висот.</p>
+            <ul>
+                <li><strong>Пройдені тренування:</strong> 12</li>
+                <li><strong>Статистика активності:</strong> Спалено 4500 ккал за тиждень</li>
+                <li><strong>Досягнення:</strong> "Марафонець тижня", "Залізна дисципліна"</li>
+            </ul>
+        </section>
+
+        <section id="journal">
+            <h2>Журнал тренувань</h2>
+            <p>Тут відображається історія ваших виконаних тренувань.</p>
+            <ul id="journal-list" class="info-details">
+                </ul>
+        </section>
+
+        <section id="diet">
+            <h2>Раціон</h2>
+            <p>Плануйте своє щоденне меню залежно від ваших цілей. Оберіть свій варіант:</p>
+            
+            <div class="grid-container">
+                <article>
+                    <h3>Збалансований (1800 ккал)</h3>
+                    <ul class="diet-list">
+                        <li><b>Сніданок:</b> Вівсянка з горіхами та медом (350 ккал)</li>
+                        <li><b>Перекус:</b> Яблуко та жменя мигдалю (150 ккал)</li>
+                        <li><b>Обід:</b> Салат з куркою та кіноа (500 ккал)</li>
+                        <li><b>Вечеря:</b> Запечена риба з броколі (400 ккал)</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Для схуднення (1400 ккал)</h3>
+                    <ul class="diet-list">
+                        <li><b>Сніданок:</b> Сирники в духовці без цукру (250 ккал)</li>
+                        <li><b>Перекус:</b> Половина грейпфрута (80 ккал)</li>
+                        <li><b>Обід:</b> Овочевий крем-суп (300 ккал)</li>
+                        <li><b>Вечеря:</b> Відварена телятина зі свіжими овочами (350 ккал)</li>
+                    </ul>
+                </article>
+
+                <article>
+                    <h3>Набір маси (2500 ккал)</h3>
+                    <ul class="diet-list">
+                        <li><b>Сніданок:</b> Омлет з 3 яєць, сиром та тостами (550 ккал)</li>
+                        <li><b>Перекус:</b> Протеїновий коктейль та банан (300 ккал)</li>
+                        <li><b>Обід:</b> Паста з індичкою у вершковому соусі (700 ккал)</li>
+                        <li><b>Вечеря:</b> Стейк з лосося, рис, авокадо (600 ккал)</li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h4><u>Контактна інформація:</u></h4>
+        <p><b>Автор:</b> Вікторія Стасишин</p>
+        <p><b>Email:</b> viktoriastasyshynn@gmail.com</p>
+        <p><b>Телефон:</b> +380971580247</p>
+        <address>Львів, Україна</address>
+        <p>© 2026 HealthTrack. Всі права захищені.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

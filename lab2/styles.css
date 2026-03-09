@@ -284,3 +284,21 @@ footer ul li {
 .btn-start:hover {
     background-color: #2ecc71;
 }
+
+/* ЛР 2. Стиль для кнопки початку тренування */
+.btn-start {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 10px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-start:hover {
+    background-color: #2ecc71;
+}
