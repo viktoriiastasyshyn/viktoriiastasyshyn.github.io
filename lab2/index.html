@@ -44,6 +44,15 @@
             <p>Тут відображається історія ваших виконаних тренувань.</p>
             <ul id="journal-list" class="info-details">
                 </ul>
+            <div style="margin-top: 20px; padding: 15px; background-color: #f4f7f6; border-radius: 8px;">
+                <h3>Додати власне тренування</h3>
+                <form id="custom-workout-form">
+                    <input type="text" id="workout-name" placeholder="Назва (напр., Біг)" style="padding: 8px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <input type="number" id="workout-duration" placeholder="Час (у хв)" style="padding: 8px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;">
+                    <button type="submit" class="btn-start" style="width: auto; margin-top: 0;">Додати вручну</button>
+                    <p id="form-error" style="color: red; display: none; margin-top: 10px;">⚠️ Будь ласка, заповніть всі поля!</p>
+                </form>
+            </div>
         </section>
 
         <section id="diet">

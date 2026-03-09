@@ -25,7 +25,7 @@ const trainingsData = [
         video: 'https://www.youtube.com/watch?v=xSrw3TZiTt4' // HASfit
     },
     {
-        title: 'Пілатес для початковців',
+        title: 'Пілатес для початківців',
         image: 'imgg/pilates.jpg',
         duration: '25 хв',
         calories: '150 ккал',
@@ -75,7 +75,81 @@ for (let i = 0; i < trainingsData.length; i++) {
     trainingsContainer.innerHTML += cardHTML;
 }
 
-// Функція-заглушка для кнопки
+// Функція, яка запускається при натисканні на кнопку "Почати тренування"
 function startTraining(title, duration, buttonElement) {
-    alert("Ви натиснули почати: " + title);
+    
+    // Завдання 2: Змінюємо статус тренування (кнопки)
+    // Перевіряємо за допомогою умовного оператора if, чи тренування ще не пройдене
+    if (buttonElement.innerText === "Почати тренування") {
+        
+        // Змінюємо текст та колір кнопки
+        buttonElement.innerText = "Тренування завершено ✅";
+        buttonElement.style.backgroundColor = "#95a5a6"; // Робимо кнопку сірою
+        buttonElement.style.cursor = "default";
+        
+        // Завдання 3: Оновлюємо Журнал тренувань
+        // Знаходимо список журналу в HTML за його ID
+        const journalList = document.getElementById('journal-list');
+        
+        // Отримуємо поточний час (щоб було як у справжньому додатку)
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('uk-UA', {hour: '2-digit', minute:'2-digit'});
+        
+        // Створюємо новий запис для журналу (Тип тренування та час)
+        const newEntry = `
+            <li style="background: #e8f6f3; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #1abc9c;">
+                <b>Тип:</b> ${title} <br>
+                <b>Тривалість:</b> ${duration} <br>
+                <b>Час виконання:</b> ${timeString}
+            </li>
+        `;
+        
+        // Додаємо цей запис у наш HTML-список журналу
+        journalList.innerHTML += newEntry;
+        
+        // Оновлюємо прогрес (Завдання 2) - візуальне сповіщення
+        alert("Вітаємо! Ви успішно завершили тренування: " + title + ". Запис додано до Журналу!");
+        
+    } else {
+        // Якщо користувач натискає на вже пройдене тренування
+        alert("Ви вже виконали це тренування сьогодні! Перевірте свій Журнал.");
+    }
 }
+
+// --- Завдання 3: Обробка форми ---
+const form = document.getElementById('custom-workout-form');
+
+form.addEventListener('submit', function(event) {
+    // Зупиняємо стандартне перезавантаження сторінки при відправці форми
+    event.preventDefault(); 
+    
+    // Отримуємо значення, які ввів користувач
+    const nameInput = document.getElementById('workout-name').value;
+    const durationInput = document.getElementById('workout-duration').value;
+    const errorMsg = document.getElementById('form-error');
+
+    // Перевіряємо (валідуємо), чи поля не порожні
+    if (nameInput === '' || durationInput === '') {
+        errorMsg.style.display = 'block'; // Показуємо повідомлення про помилку
+    } else {
+        errorMsg.style.display = 'none'; // Ховаємо помилку
+        
+        // Знаходимо журнал і додаємо туди новий запис
+        const journalList = document.getElementById('journal-list');
+        const now = new Date();
+        const timeString = now.toLocaleTimeString('uk-UA', {hour: '2-digit', minute:'2-digit'});
+        
+        const newEntry = `
+            <li style="background: #eaf2f8; padding: 10px; border-radius: 5px; margin-bottom: 10px; border-left: 4px solid #3498db;">
+                <b>Тип:</b> ${nameInput} (Власне) <br>
+                <b>Тривалість:</b> ${durationInput} хв <br>
+                <b>Час додавання:</b> ${timeString}
+            </li>
+        `;
+        
+        journalList.innerHTML += newEntry;
+        
+        // Очищаємо поля форми після успішного додавання
+        form.reset();
+    }
+});
