@@ -45,7 +45,7 @@ function App() {
   const fetchUserLogs = async (uid) => {
     try {
       // Робимо запит на наш бекенд (порт 5000)
-      const response = await fetch("http://localhost:5000/api/workouts");
+      const response = await fetch("https://healthtrack-backend-c9j5.onrender.com/api/workouts");
       const groupedData = await response.json();
       
       console.log("Отримані згруповані дані:", groupedData);
@@ -71,7 +71,7 @@ function App() {
         date: new Date().toLocaleString('uk-UA')
       };
       
-      const response = await fetch("http://localhost:5000/api/workouts", {
+      const response = await fetch("https://healthtrack-backend-c9j5.onrender.com/api/workouts", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -108,8 +108,10 @@ function App() {
 
   if (workoutLogs && typeof workoutLogs === 'object') {
     Object.values(workoutLogs).forEach(group => {
-      totalCount += group.length;
-      totalBurned += group.reduce((sum, log) => sum + (log.calories || 0), 0);
+      if (Array.isArray(group)) {
+        totalCount += group.length;
+        totalBurned += group.reduce((sum, log) => sum + (log.calories || 0), 0);
+      }
     });
   }
 

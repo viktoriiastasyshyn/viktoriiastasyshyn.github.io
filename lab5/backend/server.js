@@ -1,7 +1,12 @@
 const express = require("express");
 const cors = require("cors");
 const admin = require("firebase-admin"); // Підключаємо Firebase Admin 
-const serviceAccount = require("./serviceAccountKey.json"); 
+let serviceAccount;
+try {
+  serviceAccount = require('/etc/secrets/serviceAccountKey.json');
+} catch (error) {
+  serviceAccount = require('./serviceAccountKey.json');
+}
 
 // Ініціалізуємо Firebase 
 admin.initializeApp({
