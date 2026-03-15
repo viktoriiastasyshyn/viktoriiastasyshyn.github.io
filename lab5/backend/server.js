@@ -62,13 +62,13 @@ app.post("/api/workouts", async (req, res) => {
 });
 
 app.get("*", (req, res) => {
-  res.sendFile(path.join(buildPath, "index.html"), (err) => {
+  const indexPath = path.join(buildPath, "index.html");
+  
+  res.sendFile(indexPath, (err) => {
     if (err) {
-      // Якщо папки build немає (як на Render), пробуємо public
       res.sendFile(path.join(publicPath, "index.html"), (err2) => {
         if (err2) {
-          // Якщо і її немає, просто кажемо, що API працює
-          res.status(200).send("API is running...");
+          res.status(200).send("HealthTrack API is running perfectly!");
         }
       });
     }
