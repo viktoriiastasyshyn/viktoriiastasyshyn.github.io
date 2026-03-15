@@ -20,7 +20,11 @@ app.use(cors());
 app.use(express.json());
 
 // Завдання 1. Налаштування хостингу файлів
-app.use(express.static(path.join(__dirname, "build"))); 
+const buildPath = path.join(__dirname, "build");
+const publicPath = path.join(__dirname, "public");
+
+app.use(express.static(buildPath));
+app.use(express.static(publicPath));
 
 // Завдання 3. Маршрут GET: Отримання тренувань
 app.get("/api/workouts", async (req, res) => {
@@ -57,12 +61,21 @@ app.post("/api/workouts", async (req, res) => {
   }
 });
 
-// Якщо користувач просто заходить на сайт, віддаємо йому index.html
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+  res.sendFile(path.join(buildPath, "index.html"), (err) => {
+    if (err) {
+      // Якщо папки build немає (як на Render), пробуємо public
+      res.sendFile(path.join(publicPath, "index.html"), (err2) => {
+        if (err2) {
+          // Якщо і її немає, просто кажемо, що API працює
+          res.status(200).send("API is running...");
+        }
+      });
+    }
+  });
 });
 
-const PORT = process.env.PORT || 5000; // Використовуємо порт від Render або 5000
+const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Сервер успішно запущено на порту ${PORT}`);
 });
