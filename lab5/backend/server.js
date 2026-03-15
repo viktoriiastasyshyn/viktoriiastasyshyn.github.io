@@ -61,18 +61,8 @@ app.post("/api/workouts", async (req, res) => {
   }
 });
 
-app.get("/*", (req, res) => {
-  const indexPath = path.join(buildPath, "index.html");
-  
-  res.sendFile(indexPath, (err) => {
-    if (err) {
-      res.sendFile(path.join(publicPath, "index.html"), (err2) => {
-        if (err2) {
-          res.status(200).send("HealthTrack API is running perfectly!");
-        }
-      });
-    }
-  });
+app.get("/", (req, res) => {
+  res.status(200).send("HealthTrack API is running perfectly!");
 });
 
 const PORT = process.env.PORT || 5000;
