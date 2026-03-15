@@ -61,7 +61,7 @@ app.post("/api/workouts", async (req, res) => {
   }
 });
 
-app.get("*", (req, res) => {
+app.get("(.*)", (req, res) => {
   const indexPath = path.join(buildPath, "index.html");
   
   res.sendFile(indexPath, (err) => {
